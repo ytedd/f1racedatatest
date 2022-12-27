@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="93638262-62d9-4cfd-ad3e-93b413bda5a4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="f1racedatatestFlow" doc:id="2a793e03-a46d-42c9-bcbe-596ac7a443d9" >
+		<http:listener doc:name="Listener" doc:id="280e9121-3e19-4c08-85a7-eadcdbc0faed" config-ref="HTTP_Listener_config" path="/b"/>
+		<http:request method="GET" doc:name="Request" doc:id="4c5c4d33-2705-4093-a445-30b344445308" url="https://www.kaggle.com/datasets/coni57/f1-2020-race-data" responseTimeout="3000000"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c61b8a67-b7ac-4d38-8d92-3542c355eefb" message="#[payload]"/>
+	</flow>
+</mule>
